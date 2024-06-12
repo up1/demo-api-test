@@ -1,0 +1,71 @@
+{
+	"info": {
+		"_postman_id": "c74a0eda-9fe7-4051-bcc9-29049ea4adf6",
+		"name": "data-testing",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "1453931",
+		"_collection_link": "https://red-firefly-245852.postman.co/workspace/kbtg-20240612~6bab5bdb-96c2-4f84-86b6-947676421634/collection/1453931-c74a0eda-9fe7-4051-bcc9-29049ea4adf6?action=share&source=collection_link&creator=1453931"
+	},
+	"item": [
+		{
+			"name": "Get data",
+			"event": [
+				{
+					"listen": "test",
+					"script": {
+						"exec": [
+							"pm.test(\"Status code is 200\", function () {",
+							"    pm.response.to.have.status(200);",
+							"}); ",
+							"",
+							"pm.test(\"Your test name\", function () {",
+							"    var jsonData = pm.response.json();",
+							"    var expectedUsername = pm.variables.get(\"EXPECTED_RESULT\");",
+							"    pm.expect(jsonData.args.username).to.eql(expectedUsername);",
+							"    pm.expect(jsonData.args.email).to.eql(\"somkiat@xx.com\");",
+							"});"
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				},
+				{
+					"listen": "prerequest",
+					"script": {
+						"exec": [
+							""
+						],
+						"type": "text/javascript",
+						"packages": {}
+					}
+				}
+			],
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://postman-echo.com/get?username={{USERNAME}}&email=somkiat@xx.com",
+					"protocol": "https",
+					"host": [
+						"postman-echo",
+						"com"
+					],
+					"path": [
+						"get"
+					],
+					"query": [
+						{
+							"key": "username",
+							"value": "{{USERNAME}}"
+						},
+						{
+							"key": "email",
+							"value": "somkiat@xx.com"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
